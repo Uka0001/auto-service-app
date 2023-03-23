@@ -8,9 +8,11 @@ Server app that accepts HTTP requests, stores data in a database
 ## Used technologies:
 - Java17
 - Spring Boot
-- PostgresSQL
+- PostgreSQL
 - Swagger
 - REST API
+- Checkstyle
+- Logging (Log4j + slf4j)
 
 ## Functionality:
 • POST - Creation of the "Master" entity

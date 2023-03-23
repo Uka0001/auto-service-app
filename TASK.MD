@@ -32,7 +32,8 @@ paid)
 • Price
 • Status (Paid, not paid (to master))
 ### Goods:
-• Name • Cost
+• Name 
+• Cost
 
 ## Requests:
 • POST - Creation of the "Master" entity
@@ -41,10 +42,12 @@ paid)
 • GET - Calculation and issuance of wages to the master
 • POST - Creation of the "Machine" entity
 • PUT - Editing entity data
-• POST - Creation of the entity "Owner of the Machine" • PUT - Editing the data of the entity
+• POST - Creation of the entity "Owner of the Machine" 
+• PUT - Editing the data of the entity
 • GET - Get this customer's orders
 • POST - Creation of the "Order" entity
-• POST - Adding "Product" to the "Order" entity • PUT - Editing entity data
+• POST - Adding "Product" to the "Order" entity 
+• PUT - Editing entity data
 • PUT - Editing the status of the "Order"
 • GET - Calculation of the cost of the "Order"
 • POST - Creation of the "Service" entity
