@@ -34,4 +34,4 @@ Server app that accepts HTTP requests, stores data in a database
 
 ## Project SetUp:
 1. Clone this repo.
-2. 
+2. ...

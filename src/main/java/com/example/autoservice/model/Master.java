@@ -1,5 +1,6 @@
 package com.example.autoservice.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class Master {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fullName;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Order> completedOrders;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    @Column(name = "completed_orders")
+    private List<Order> completedOrder;
 }

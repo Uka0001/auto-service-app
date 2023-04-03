@@ -1,5 +1,0 @@
-databaseChangelog:
-  -include:
-    file: /db/changelog/changes/create-car-seq.sql
-    -include:
-      file: /db/changelog/changes/create-car-table.sql

@@ -1,6 +1,6 @@
 package com.example.autoservice.model;
 
-enum ServiceStatus {
+public enum ServiceStatus {
     PAID("paid"),
     NOT_PAID("not paid");
 

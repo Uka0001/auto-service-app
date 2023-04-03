@@ -25,7 +25,8 @@ server that accepts HTTP requests, stores data in a database
 • Goods included in the order
 • Status (accepted, in progress, completed successfully, not completed successfully,
 paid)
-• Total cost to customer • Completion date
+• Total cost to customer 
+• Completion date
 ### Service:
 • Order
 • Master
@@ -40,7 +41,7 @@ paid)
 • PUT - Editing entity data
 • GET - Receiving master's orders
 • GET - Calculation and issuance of wages to the master
-• POST - Creation of the "Machine" entity
+• POST - Creation of the "Car" entity
 • PUT - Editing entity data
 • POST - Creation of the entity "Owner of the Machine" 
 • PUT - Editing the data of the entity
@@ -51,8 +52,9 @@ paid)
 • PUT - Editing the status of the "Order"
 • GET - Calculation of the cost of the "Order"
 • POST - Creation of the "Service" entity
-• PUT - Editing entity data • PUT - Editing the "Service" status
-• POST - Creation of the entity "Product"
+• PUT - Editing entity data 
+• PUT - Editing the "Service" status
+• POST - Creation of the entity "Goods"
 • PUT - Editing entity data
 
 ## Notes:

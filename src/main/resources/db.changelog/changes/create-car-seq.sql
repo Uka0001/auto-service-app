@@ -1,2 +1,0 @@
---liquibase formatted sql
---changeset <postgres>:<create-car-sequence-id
