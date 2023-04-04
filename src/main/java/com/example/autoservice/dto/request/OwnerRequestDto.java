@@ -7,7 +7,6 @@ import lombok.Getter;
 
 @Getter
 public class OwnerRequestDto {
-    private Long id;
     private String ownerName;
     private List<Car> cars;
     List<Order> orders;
