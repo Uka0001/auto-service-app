@@ -6,7 +6,8 @@ import com.example.autoservice.model.Car;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarRequestMapper implements DtoRequestMapper<CarRequestDto, Car> {
+public class CarRequestMapper
+        implements DtoRequestMapper<CarRequestDto, Car> {
     @Override
     public Car fromDto(CarRequestDto dto) {
         Car car = new Car();

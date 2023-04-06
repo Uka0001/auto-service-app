@@ -6,7 +6,8 @@ import com.example.autoservice.model.Owner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OwnerRequestMapper implements DtoRequestMapper<OwnerRequestDto, Owner> {
+public class OwnerRequestMapper
+        implements DtoRequestMapper<OwnerRequestDto, Owner> {
     @Override
     public Owner fromDto(OwnerRequestDto dto) {
         Owner owner = new Owner();

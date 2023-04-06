@@ -6,7 +6,8 @@ import com.example.autoservice.model.Good;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GoodRequestMapper implements DtoRequestMapper<GoodRequestDto, Good> {
+public class GoodRequestMapper
+        implements DtoRequestMapper<GoodRequestDto, Good> {
     @Override
     public Good fromDto(GoodRequestDto dto) {
         Good good = new Good();
