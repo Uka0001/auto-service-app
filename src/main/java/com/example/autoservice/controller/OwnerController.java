@@ -27,14 +27,14 @@ public class OwnerController {
         this.ownerRequestMapper = ownerRequestMapper;
     }
 
-    @PostMapping
-    public OwnerResponseDto add(@RequestBody OwnerRequestDto dto) {
+    @PostMapping("create_owner")
+    public OwnerResponseDto addOwner(@RequestBody OwnerRequestDto dto) {
         Owner owner = ownerService.save(ownerRequestMapper.fromDto(dto));
         return ownerResponseMapper.toDto(owner);
     }
 
-    @PutMapping("/id")
-    public OwnerResponseDto update(OwnerRequestDto requestDto, Long id) {
+    @PutMapping("/update_owner")
+    public OwnerResponseDto updateOwner(OwnerRequestDto requestDto, Long id) {
         Owner owner = ownerRequestMapper.fromDto(requestDto);
         owner.setId(id);
         return ownerResponseMapper.toDto(ownerService.save(owner));

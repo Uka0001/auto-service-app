@@ -28,14 +28,14 @@ public class CarController {
         this.carRequestMapper = carRequestMapper;
     }
 
-    @PostMapping("/car")
-    public CarResponseDto add(@RequestBody CarRequestDto dto) {
+    @PostMapping("/add_car")
+    public CarResponseDto addCar(@RequestBody CarRequestDto dto) {
         Car car = carService.save(carRequestMapper.fromDto(dto));
         return carResponseMapper.toDto(car);
     }
 
-    @PutMapping("/car_id")
-    public CarResponseDto update(CarRequestDto requestDto, Long id) {
+    @PutMapping("/update_car")
+    public CarResponseDto updateCar(CarRequestDto requestDto, Long id) {
         Car car = carRequestMapper.fromDto(requestDto);
         car.setId(id);
         return carResponseMapper.toDto(carService.save(car));
