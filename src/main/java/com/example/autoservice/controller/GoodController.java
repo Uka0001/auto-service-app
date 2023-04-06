@@ -27,13 +27,13 @@ public class GoodController {
         this.responseMapper = responseMapper;
     }
 
-    @PostMapping
+    @PostMapping("/good")
     public GoodResponseDto add(@RequestBody GoodRequestDto dto) {
         Good good = goodService.save(requestMapper.fromDto(dto));
         return responseMapper.toDto(good);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/good_id")
     public GoodResponseDto update(@RequestBody GoodRequestDto dto, Long id) {
         Good good = requestMapper.fromDto(dto);
         good.setId(id);
