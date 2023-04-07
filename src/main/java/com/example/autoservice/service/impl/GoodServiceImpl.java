@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GoodServiceImpl implements GoodService {
-    GoodRepository goodRepository;
+    private GoodRepository goodRepository;
 
     @Override
     public Good save(Good good) {

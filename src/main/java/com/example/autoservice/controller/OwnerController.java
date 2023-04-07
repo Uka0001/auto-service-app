@@ -6,6 +6,7 @@ import com.example.autoservice.dto.request.OwnerRequestDto;
 import com.example.autoservice.dto.response.OwnerResponseDto;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.service.OwnerService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "/owners")
+@RequestMapping("/owners")
 public class OwnerController {
     private final OwnerService ownerService;
     private final OwnerResponseMapper ownerResponseMapper;
@@ -27,14 +28,15 @@ public class OwnerController {
         this.ownerRequestMapper = ownerRequestMapper;
     }
 
-    @PostMapping("create_owner")
-    public OwnerResponseDto addOwner(@RequestBody OwnerRequestDto dto) {
+    @PostMapping
+    public OwnerResponseDto add(@RequestBody OwnerRequestDto dto) {
         Owner owner = ownerService.save(ownerRequestMapper.fromDto(dto));
         return ownerResponseMapper.toDto(owner);
     }
 
-    @PutMapping("/update_owner")
-    public OwnerResponseDto updateOwner(OwnerRequestDto requestDto, Long id) {
+    @PutMapping("/{id}")
+    public OwnerResponseDto update(@RequestBody OwnerRequestDto requestDto,
+                                        @PathVariable Long id) {
         Owner owner = ownerRequestMapper.fromDto(requestDto);
         owner.setId(id);
         return ownerResponseMapper.toDto(ownerService.save(owner));

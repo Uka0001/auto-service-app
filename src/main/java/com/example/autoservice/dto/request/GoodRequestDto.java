@@ -1,7 +1,7 @@
 package com.example.autoservice.dto.request;
 
-import java.math.BigDecimal;
 import com.example.autoservice.model.Order;
+import java.math.BigDecimal;
 import lombok.Getter;
 
 @Getter

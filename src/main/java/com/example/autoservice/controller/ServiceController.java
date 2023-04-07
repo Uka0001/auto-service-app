@@ -7,6 +7,7 @@ import com.example.autoservice.dto.response.ServiceResponseDto;
 import com.example.autoservice.model.Service;
 import com.example.autoservice.model.ServiceStatus;
 import com.example.autoservice.service.ServiceService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "/service")
+@RequestMapping("/services")
 public class ServiceController {
     private final ServiceService serviceService;
     private final ServiceResponseMapper responseMapper;
@@ -28,23 +29,26 @@ public class ServiceController {
         this.requestMapper = requestMapper;
     }
 
-    @PostMapping("/create_service")
-    public ServiceResponseDto addService(@RequestBody ServiceRequestDto dto) {
+    @PostMapping
+    public ServiceResponseDto add(@RequestBody ServiceRequestDto dto) {
         Service service = serviceService.save(requestMapper.fromDto(dto));
         return responseMapper.toDto(service);
     }
 
-    @PutMapping("/update_service")
-    public ServiceResponseDto updateService(ServiceRequestDto requestDto, Long id) {
+    @PutMapping("/{id}")
+    public ServiceResponseDto update(@RequestBody ServiceRequestDto requestDto,
+                                            @PathVariable Long id) {
         Service service = requestMapper.fromDto(requestDto);
         service.setId(id);
         return responseMapper.toDto(serviceService.save(service));
     }
 
-    @PutMapping("/update_service_status")
-    public ServiceResponseDto updateServiceStatus(ServiceRequestDto requestDto, ServiceStatus serviceStatus, Long id) {
+    @PutMapping("/{id}/{status}")
+    public ServiceResponseDto updateServiceStatus(@RequestBody ServiceRequestDto requestDto,
+                                                  @PathVariable Long id,
+                                                  @PathVariable ServiceStatus status) {
         Service service = requestMapper.fromDto(requestDto);
-        service.setStatus(serviceStatus);
+        service.setStatus(status);
         service.setId(id);
         return responseMapper.toDto(serviceService.save(service));
     }

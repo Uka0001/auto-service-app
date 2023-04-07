@@ -1,9 +1,9 @@
 package com.example.autoservice.dto.request;
 
-import java.math.BigDecimal;
 import com.example.autoservice.model.Master;
 import com.example.autoservice.model.Order;
 import com.example.autoservice.model.ServiceStatus;
+import java.math.BigDecimal;
 import lombok.Getter;
 
 @Getter

@@ -7,12 +7,13 @@ Server app that accepts HTTP requests, stores data in a database
 
 ## Used technologies:
 - Java17
-- Spring Boot
+- Spring Boot 3.0.5
 - PostgreSQL
-- Swagger
+- Swagger UI
+- SpringDoc
 - REST API
 - Checkstyle
-- Logging (Log4j + slf4j)
+- Logging (Log4j + slf4j) //TODO 
 
 ## Functionality:
 • POST - Creation of the "Master" entity
@@ -35,3 +36,8 @@ Server app that accepts HTTP requests, stores data in a database
 ## Project SetUp:
 1. Clone this repo.
 2. ...
+
+## Entering Swagger UI throw SpringDoc:
+1. Start app.
+2. Enter http://localhost:8080/swagger-ui/index.html#/ 
+and you`ll see all the needed Swagger UI functional ;)

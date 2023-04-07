@@ -1,24 +1,21 @@
 package com.example.autoservice.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-import java.util.List;
-
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "owners")
 public class Owner {
@@ -29,5 +26,5 @@ public class Owner {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<Car> cars;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    List<Order> orders;
+    private List<Order> orders;
 }

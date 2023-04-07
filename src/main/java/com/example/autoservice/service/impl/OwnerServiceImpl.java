@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OwnerServiceImpl implements OwnerService {
-    OwnerRepository ownerRepository;
+    private OwnerRepository ownerRepository;
 
     @Override
     public Owner save(Owner owner) {
@@ -18,5 +18,10 @@ public class OwnerServiceImpl implements OwnerService {
     public Owner update(Owner owner, Long updatedOwnerId) {
         owner.setId(updatedOwnerId);
         return ownerRepository.save(owner);
+    }
+
+    @Override
+    public Owner get(Long ownerId) {
+        return ownerRepository.findById(ownerId).orElseThrow();
     }
 }

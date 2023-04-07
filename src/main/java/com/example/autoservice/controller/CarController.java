@@ -6,6 +6,7 @@ import com.example.autoservice.dto.request.CarRequestDto;
 import com.example.autoservice.dto.response.CarResponseDto;
 import com.example.autoservice.model.Car;
 import com.example.autoservice.service.CarService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(name = "/cars")
+@RequestMapping("/cars")
 public class CarController {
 
     private final CarService carService;
@@ -28,14 +29,15 @@ public class CarController {
         this.carRequestMapper = carRequestMapper;
     }
 
-    @PostMapping("/add_car")
-    public CarResponseDto addCar(@RequestBody CarRequestDto dto) {
+    @PostMapping
+    public CarResponseDto add(@RequestBody CarRequestDto dto) {
         Car car = carService.save(carRequestMapper.fromDto(dto));
         return carResponseMapper.toDto(car);
     }
 
-    @PutMapping("/update_car")
-    public CarResponseDto updateCar(CarRequestDto requestDto, Long id) {
+    @PutMapping("/{id}")
+    public CarResponseDto update(@RequestBody CarRequestDto requestDto,
+                                    @PathVariable Long id) {
         Car car = carRequestMapper.fromDto(requestDto);
         car.setId(id);
         return carResponseMapper.toDto(carService.save(car));

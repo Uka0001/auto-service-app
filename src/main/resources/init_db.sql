@@ -1,4 +1,4 @@
-create database auto_service_db;
+create database autoservice_db;
 create table public.cars
 (
     id     bigserial

@@ -7,7 +7,7 @@ import com.example.autoservice.service.ServiceService;
 
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {
-    ServiceRepository serviceRepository;
+    private ServiceRepository serviceRepository;
 
     @Override
     public Service save(Service service) {
