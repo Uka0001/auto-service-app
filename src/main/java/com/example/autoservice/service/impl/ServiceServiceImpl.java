@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 
 @org.springframework.stereotype.Service
 @AllArgsConstructor
-@JsonInclude
 public class ServiceServiceImpl implements ServiceService {
     private ServiceRepository serviceRepository;
 

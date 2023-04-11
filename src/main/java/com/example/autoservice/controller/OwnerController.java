@@ -1,12 +1,15 @@
 package com.example.autoservice.controller;
 
 import com.example.autoservice.dto.mapper.request.OwnerRequestMapper;
+import com.example.autoservice.dto.mapper.response.OrderResponseMapper;
 import com.example.autoservice.dto.mapper.response.OwnerResponseMapper;
 import com.example.autoservice.dto.request.OwnerRequestDto;
+import com.example.autoservice.dto.response.OrderResponseDto;
 import com.example.autoservice.dto.response.OwnerResponseDto;
 import com.example.autoservice.model.Order;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.service.OwnerService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,21 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/owners")
+@AllArgsConstructor
 public class OwnerController {
     private final OwnerService ownerService;
     private final OwnerResponseMapper ownerResponseMapper;
     private final OwnerRequestMapper ownerRequestMapper;
-
-    public OwnerController(OwnerService ownerService,
-                           OwnerResponseMapper ownerResponseMapper,
-                           OwnerRequestMapper ownerRequestMapper) {
-        this.ownerService = ownerService;
-        this.ownerResponseMapper = ownerResponseMapper;
-        this.ownerRequestMapper = ownerRequestMapper;
-    }
+    private final OrderResponseMapper orderResponseMapper;
 
     @PostMapping
     public OwnerResponseDto add(@RequestBody OwnerRequestDto dto) {
@@ -47,7 +45,9 @@ public class OwnerController {
     }
 
     @GetMapping("/{id}/orders")
-    public List<Order> getOwnerOrders(@PathVariable Long id) {
-        return ownerService.get(id).getOrders();
+    public List<OrderResponseDto> getOwnerOrders(@PathVariable Long id) {
+        return ownerService.get(id).getOrders().stream()
+                .map(orderResponseMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
