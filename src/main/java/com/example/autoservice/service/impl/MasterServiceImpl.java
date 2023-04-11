@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@JsonInclude
 public class MasterServiceImpl implements MasterService {
     private MasterRepository masterRepository;
 

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@JsonInclude
 public class GoodServiceImpl implements GoodService {
     private GoodRepository goodRepository;
 

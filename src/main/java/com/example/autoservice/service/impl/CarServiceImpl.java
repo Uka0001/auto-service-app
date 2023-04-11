@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@JsonInclude
 public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 

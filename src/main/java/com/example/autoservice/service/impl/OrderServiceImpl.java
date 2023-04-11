@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@JsonInclude
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final GoodRepository goodRepository;
