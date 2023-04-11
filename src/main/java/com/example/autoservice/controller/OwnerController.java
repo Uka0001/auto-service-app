@@ -6,8 +6,8 @@ import com.example.autoservice.dto.mapper.response.OwnerResponseMapper;
 import com.example.autoservice.dto.request.OwnerRequestDto;
 import com.example.autoservice.dto.response.OrderResponseDto;
 import com.example.autoservice.dto.response.OwnerResponseDto;
-import com.example.autoservice.model.Order;
 import com.example.autoservice.model.Owner;
+import com.example.autoservice.service.OrderService;
 import com.example.autoservice.service.OwnerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +29,7 @@ public class OwnerController {
     private final OwnerResponseMapper ownerResponseMapper;
     private final OwnerRequestMapper ownerRequestMapper;
     private final OrderResponseMapper orderResponseMapper;
+    private final OrderService orderService;
 
     @PostMapping
     public OwnerResponseDto add(@RequestBody OwnerRequestDto dto) {
@@ -38,15 +39,18 @@ public class OwnerController {
 
     @PutMapping("/{id}")
     public OwnerResponseDto update(@RequestBody OwnerRequestDto requestDto,
-                                        @PathVariable Long id) {
+                                   @PathVariable Long id) {
         Owner owner = ownerRequestMapper.fromDto(requestDto);
         owner.setId(id);
-        return ownerResponseMapper.toDto(ownerService.save(owner));
+        ownerService.save(owner);
+        return ownerResponseMapper.toDto(owner);
     }
 
     @GetMapping("/{id}/orders")
     public List<OrderResponseDto> getOwnerOrders(@PathVariable Long id) {
-        return ownerService.get(id).getOrders().stream()
+        return orderService
+                .getOrdersByOwner(ownerService.getById(id))
+                .stream()
                 .map(orderResponseMapper::toDto)
                 .collect(Collectors.toList());
     }

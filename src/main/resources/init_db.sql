@@ -69,6 +69,7 @@ create table public.services
 (
     id        bigserial
         primary key,
+    name      varchar(255),
     price     numeric(38, 2),
     status    smallint,
     master_id bigint

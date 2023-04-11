@@ -8,5 +8,5 @@ public interface OwnerService {
 
     Owner update(Owner owner, Long updatedOwnerId);
 
-    Owner get(Long ownerId);
+    Owner getById(Long ownerId);
 }

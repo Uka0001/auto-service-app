@@ -28,4 +28,9 @@ public class ServiceServiceImpl implements ServiceService {
         service.setStatus(status);
         return serviceRepository.save(service);
     }
+
+    @Override
+    public Service getById(Long id) {
+        return serviceRepository.findById(id).orElseThrow(NoSuchFieldError::new);
+    }
 }

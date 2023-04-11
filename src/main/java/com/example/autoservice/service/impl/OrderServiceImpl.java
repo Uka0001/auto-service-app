@@ -9,6 +9,7 @@ import com.example.autoservice.repository.OrderRepository;
 import com.example.autoservice.repository.OwnerRepository;
 import com.example.autoservice.service.OrderService;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrdersByOwner(Owner owner) {
         return ownerRepository
-                .getReferenceById(owner.getId())
-                .getOrders();
+                .findById(owner.getId())
+                .get().getOrders();
     }
 
     @Override
@@ -51,19 +52,33 @@ public class OrderServiceImpl implements OrderService {
     public Order updateByStatus(OrderStatus status, Long updatedOrderId) {
         Order order = orderRepository.getReferenceById(updatedOrderId);
         order.setStatus(status);
+        if (status.equals(OrderStatus.COMPLETED)
+                || status.equals(OrderStatus.NOT_COMPLETED)) {
+            order.setDateOfAdoption(LocalDate.now());
+        }
         return orderRepository.save(order);
     }
 
     @Override
     public BigDecimal calculate(Order order) {
-        BigDecimal goodCost = order.getGoodsList()
+        List<Good> goodsList = order.getGoodsList();
+        double GoodsDiscount = 1 - (goodsList.size() * 0.01);
+        List<com.example.autoservice.model.Service> serviceList = order.getServiceList();
+        double ServicesDiscount = 1 - (serviceList.size() * 0.02);
+        BigDecimal goodCost = goodsList
                 .stream()
                 .map(Good::getGoodCost)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal serviceCost = order.getServiceList()
+                .reduce(BigDecimal.ZERO, BigDecimal::add).multiply(BigDecimal.valueOf(GoodsDiscount));
+        BigDecimal serviceCost = serviceList
                 .stream()
                 .map(com.example.autoservice.model.Service::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+                .reduce(BigDecimal.ZERO, BigDecimal::add).multiply(BigDecimal.valueOf(ServicesDiscount));
+        if (serviceList.size() > 1
+                && serviceList.stream()
+                .map(service -> service.getName())
+                .anyMatch(s -> s.equalsIgnoreCase("Diagnostic"))) {
+            serviceCost.min(BigDecimal.valueOf(500));
+        }
         return goodCost.add(serviceCost);
     }
 

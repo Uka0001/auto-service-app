@@ -10,4 +10,6 @@ public interface ServiceService {
     Service update(Service service, Long updatedServiceId);
 
     Service updateByStatus(ServiceStatus status, Service service);
+
+    Service getById(Long id);
 }

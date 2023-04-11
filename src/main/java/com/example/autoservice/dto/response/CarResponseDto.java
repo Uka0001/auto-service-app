@@ -1,6 +1,5 @@
 package com.example.autoservice.dto.response;
 
-import com.example.autoservice.model.Owner;
 import lombok.Getter;
 import lombok.Setter;
 

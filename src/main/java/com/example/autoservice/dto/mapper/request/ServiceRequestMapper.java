@@ -18,6 +18,7 @@ public class ServiceRequestMapper
     public Service fromDto(ServiceRequestDto dto) {
         Service service = new Service();
         service.setStatus(dto.getStatus());
+        service.setName(dto.getName());
         service.setOrder(orderRepository
                 .findById(dto.getOrderId())
                 .orElse(null));

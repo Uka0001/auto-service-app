@@ -44,10 +44,9 @@ public class ServiceController {
     }
 
     @PutMapping("/{id}/{status}")
-    public ServiceResponseDto updateServiceStatus(@RequestBody ServiceRequestDto requestDto,
-                                                  @PathVariable Long id,
+    public ServiceResponseDto updateServiceStatus(@PathVariable Long id,
                                                   @PathVariable ServiceStatus status) {
-        Service service = requestMapper.fromDto(requestDto);
+        Service service = serviceService.getById(id);
         service.setStatus(status);
         service.setId(id);
         return responseMapper.toDto(serviceService.save(service));

@@ -24,7 +24,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner get(Long ownerId) {
+    public Owner getById(Long ownerId) {
         return ownerRepository.findById(ownerId).orElseThrow();
     }
 }
