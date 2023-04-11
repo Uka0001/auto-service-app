@@ -13,7 +13,8 @@ public class GoodResponseMapper implements DtoResponseMapper<GoodResponseDto, Go
         GoodResponseDto responseDto = new GoodResponseDto();
         responseDto.setGoodCost(good.getGoodCost());
         responseDto.setName(good.getName());
-        responseDto.setOrder(good.getOrder());
+        responseDto.setOrderId(good.getOrder().getId());
+        responseDto.setId(good.getId());
         return responseDto;
     }
 }

@@ -8,5 +8,5 @@ import lombok.Getter;
 public class GoodRequestDto {
     private String name;
     private BigDecimal goodCost;
-    private Order order;
+    private Long orderId;
 }

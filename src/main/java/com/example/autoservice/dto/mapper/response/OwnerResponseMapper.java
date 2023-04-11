@@ -5,6 +5,8 @@ import com.example.autoservice.dto.response.OwnerResponseDto;
 import com.example.autoservice.model.Owner;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class OwnerResponseMapper
         implements DtoResponseMapper<OwnerResponseDto, Owner> {
@@ -12,8 +14,13 @@ public class OwnerResponseMapper
     public OwnerResponseDto toDto(Owner owner) {
         OwnerResponseDto responseDto = new OwnerResponseDto();
         responseDto.setOwnerName(owner.getOwnerName());
-        responseDto.setCars(owner.getCars());
-        responseDto.setOrders(owner.getOrders());
+        responseDto.setCarsId(owner.getCars().stream()
+                .map(car -> car.getId())
+                .collect(Collectors.toList()));
+        responseDto.setOrdersId(owner.getOrders().stream()
+                .map(car -> car.getId())
+                .collect(Collectors.toList()));
+        responseDto.setId(owner.getId());
         return responseDto;
     }
 }

@@ -15,7 +15,6 @@ import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -44,12 +43,4 @@ public class Order {
     private OrderStatus status;
     private BigDecimal totalCost;
     private LocalDate completionDate;
-
-    public void setTotalCost(BigDecimal totalCost) {
-        BigDecimal orderCost = goodsList
-                .stream()
-                .map(Good::getGoodCost)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        this.totalCost = orderCost;
-    }
 }

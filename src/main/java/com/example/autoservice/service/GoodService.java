@@ -7,4 +7,6 @@ public interface GoodService {
     Good save(Good good);
 
     Good update(Good good);
+    
+    Good findById(Long id);
 }

@@ -10,23 +10,17 @@ import com.example.autoservice.repository.OwnerRepository;
 import com.example.autoservice.service.OrderService;
 import java.math.BigDecimal;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
+@JsonInclude
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final GoodRepository goodRepository;
     private final OwnerRepository ownerRepository;
-
-    @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository,
-                            GoodRepository goodRepository,
-                            OwnerRepository ownerRepository) {
-        this.orderRepository = orderRepository;
-        this.goodRepository = goodRepository;
-        this.ownerRepository = ownerRepository;
-    }
 
     @Override
     public Order save(Order order) {
@@ -63,7 +57,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public BigDecimal calculate(Order order) {
-        return order.getTotalCost();
+        BigDecimal goodCost = order.getGoodsList()
+                .stream()
+                .map(Good::getGoodCost)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal serviceCost = order.getServiceList()
+                .stream()
+                .map(com.example.autoservice.model.Service::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return goodCost.add(serviceCost);
     }
 
     @Override

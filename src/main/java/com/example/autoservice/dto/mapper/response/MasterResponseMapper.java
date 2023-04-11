@@ -5,14 +5,19 @@ import com.example.autoservice.dto.response.MasterResponseDto;
 import com.example.autoservice.model.Master;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class MasterResponseMapper
         implements DtoResponseMapper<MasterResponseDto, Master> {
     @Override
     public MasterResponseDto toDto(Master master) {
         MasterResponseDto masterResponseDto = new MasterResponseDto();
-        masterResponseDto.setCompletedOrder(master.getCompletedOrder());
+        masterResponseDto.setCompletedOrderId(master.getCompletedOrder().stream()
+                .map(order -> order.getId())
+                .collect(Collectors.toList()));
         masterResponseDto.setFullName(master.getFullName());
-        return null;
+        masterResponseDto.setId(master.getId());
+        return masterResponseDto;
     }
 }

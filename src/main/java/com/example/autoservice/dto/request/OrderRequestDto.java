@@ -12,12 +12,12 @@ import lombok.Getter;
 
 @Getter
 public class OrderRequestDto {
-    private Car car;
-    private Master master;
+    private Long carId;
+    private Long masterId;
     private String description;
     private LocalDate dateOfAdoption;
-    private List<Service> serviceList;
-    private List<Good> goodsList;
+    private List<Long> serviceIdList;
+    private List<Long> goodsIdList;
     private OrderStatus status;
     private BigDecimal totalCost;
     private LocalDate completionDate;

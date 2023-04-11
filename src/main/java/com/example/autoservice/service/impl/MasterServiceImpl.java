@@ -6,9 +6,14 @@ import com.example.autoservice.repository.MasterRepository;
 import com.example.autoservice.service.MasterService;
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
+@JsonInclude
 public class MasterServiceImpl implements MasterService {
     private MasterRepository masterRepository;
 

@@ -4,14 +4,18 @@ import com.example.autoservice.dto.mapper.request.OwnerRequestMapper;
 import com.example.autoservice.dto.mapper.response.OwnerResponseMapper;
 import com.example.autoservice.dto.request.OwnerRequestDto;
 import com.example.autoservice.dto.response.OwnerResponseDto;
+import com.example.autoservice.model.Order;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.service.OwnerService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/owners")
@@ -40,5 +44,10 @@ public class OwnerController {
         Owner owner = ownerRequestMapper.fromDto(requestDto);
         owner.setId(id);
         return ownerResponseMapper.toDto(ownerService.save(owner));
+    }
+
+    @GetMapping("/{id}/orders")
+    public List<Order> getOwnerOrders(@PathVariable Long id) {
+        return ownerService.get(id).getOrders();
     }
 }

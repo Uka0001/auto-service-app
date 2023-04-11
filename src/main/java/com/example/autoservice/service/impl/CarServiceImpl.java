@@ -3,9 +3,13 @@ package com.example.autoservice.service.impl;
 import com.example.autoservice.model.Car;
 import com.example.autoservice.repository.CarRepository;
 import com.example.autoservice.service.CarService;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
+@JsonInclude
 public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 

@@ -8,8 +8,8 @@ import lombok.Getter;
 
 @Getter
 public class ServiceRequestDto {
-    private Order order;
-    private Master master;
+    private Long orderId;
+    private Long masterId;
     private BigDecimal price;
     private ServiceStatus status;
 }

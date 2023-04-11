@@ -9,5 +9,5 @@ public class CarRequestDto {
     private String model;
     private int year;
     private String number;
-    private Owner owner;
+    private Long ownerId;
 }

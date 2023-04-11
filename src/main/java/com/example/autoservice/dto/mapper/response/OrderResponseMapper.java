@@ -5,21 +5,28 @@ import com.example.autoservice.dto.response.OrderResponseDto;
 import com.example.autoservice.model.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class OrderResponseMapper
         implements DtoResponseMapper<OrderResponseDto, Order> {
     @Override
     public OrderResponseDto toDto(Order order) {
         OrderResponseDto responseDto = new OrderResponseDto();
-        responseDto.setCar(order.getCar());
-        responseDto.setMaster(order.getMaster());
+        responseDto.setCarId(order.getCar().getId());
+        responseDto.setMasterId(order.getMaster().getId());
         responseDto.setDescription(order.getDescription());
         responseDto.setStatus(order.getStatus());
-        responseDto.setGoodsList(order.getGoodsList());
+        responseDto.setGoodsIdList(order.getGoodsList().stream()
+                .map(o -> o.getId())
+                .collect(Collectors.toList()));
         responseDto.setCompletionDate(order.getCompletionDate());
         responseDto.setDateOfAdoption(order.getDateOfAdoption());
-        responseDto.setServiceList(order.getServiceList());
+        responseDto.setServiceIdList(order.getServiceList().stream()
+                .map(o -> o.getId())
+                .collect(Collectors.toList()));
         responseDto.setTotalCost(order.getTotalCost());
+        responseDto.setId(order.getId());
         return responseDto;
     }
 }
