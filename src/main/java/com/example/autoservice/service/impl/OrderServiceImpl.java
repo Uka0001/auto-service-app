@@ -11,7 +11,6 @@ import com.example.autoservice.service.OrderService;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -62,17 +61,20 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public BigDecimal calculate(Order order) {
         List<Good> goodsList = order.getGoodsList();
-        double GoodsDiscount = 1 - (goodsList.size() * 0.01);
-        List<com.example.autoservice.model.Service> serviceList = order.getServiceList();
-        double ServicesDiscount = 1 - (serviceList.size() * 0.02);
+        double goodsDiscount = 1 - (goodsList.size() * 0.01);
+        List<com.example.autoservice.model.Service> serviceList
+                = order.getServiceList();
+        double servicesDiscount = 1 - (serviceList.size() * 0.02);
         BigDecimal goodCost = goodsList
                 .stream()
                 .map(Good::getGoodCost)
-                .reduce(BigDecimal.ZERO, BigDecimal::add).multiply(BigDecimal.valueOf(GoodsDiscount));
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .multiply(BigDecimal.valueOf(goodsDiscount));
         BigDecimal serviceCost = serviceList
                 .stream()
                 .map(com.example.autoservice.model.Service::getPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add).multiply(BigDecimal.valueOf(ServicesDiscount));
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .multiply(BigDecimal.valueOf(servicesDiscount));
         if (serviceList.size() > 1
                 && serviceList.stream()
                 .map(service -> service.getName())

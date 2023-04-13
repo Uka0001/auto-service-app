@@ -3,7 +3,6 @@ package com.example.autoservice.service.impl;
 import com.example.autoservice.model.Good;
 import com.example.autoservice.repository.GoodRepository;
 import com.example.autoservice.service.GoodService;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

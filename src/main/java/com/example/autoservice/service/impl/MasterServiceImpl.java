@@ -7,9 +7,6 @@ import com.example.autoservice.repository.MasterRepository;
 import com.example.autoservice.service.MasterService;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +40,8 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public List<Order> getMastersOrders(Long masterId) {
-        return masterRepository.getReferenceById(masterId).getCompletedOrder();
+        //return masterRepository.findById(masterId).get().getCompletedOrder();
+        return masterRepository.findAllByMasterId(masterId);
     }
 
     @Override

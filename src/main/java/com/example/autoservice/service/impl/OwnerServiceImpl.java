@@ -3,7 +3,6 @@ package com.example.autoservice.service.impl;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.repository.OwnerRepository;
 import com.example.autoservice.service.OwnerService;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -4,7 +4,6 @@ import com.example.autoservice.model.Service;
 import com.example.autoservice.model.ServiceStatus;
 import com.example.autoservice.repository.ServiceRepository;
 import com.example.autoservice.service.ServiceService;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 
 @org.springframework.stereotype.Service
