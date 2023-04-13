@@ -50,7 +50,5 @@ public class OwnerController {
         return orderService
                 .getOrdersByOwner(ownerService.getById(id))
                 .stream()
-                .map(orderResponseMapper::toDto)
-                .collect(Collectors.toList());
     }
 }
