@@ -7,10 +7,9 @@ import com.example.autoservice.repository.CarRepository;
 import com.example.autoservice.repository.GoodRepository;
 import com.example.autoservice.repository.MasterRepository;
 import com.example.autoservice.repository.ServiceRepository;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor

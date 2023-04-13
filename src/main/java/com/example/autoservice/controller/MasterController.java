@@ -62,6 +62,8 @@ public class MasterController {
 
     @GetMapping("/wages")
     public BigDecimal findMasterWages(@RequestParam Long masterId) {
-        return masterService.getSalary(masterService.findById(masterId));
+        return masterService
+                .getSalary(masterService.findById(masterId))
+                .multiply(BigDecimal.valueOf(0.4));
     }
 }

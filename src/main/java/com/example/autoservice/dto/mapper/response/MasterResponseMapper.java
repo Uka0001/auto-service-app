@@ -3,9 +3,8 @@ package com.example.autoservice.dto.mapper.response;
 import com.example.autoservice.dto.mapper.DtoResponseMapper;
 import com.example.autoservice.dto.response.MasterResponseDto;
 import com.example.autoservice.model.Master;
-import org.springframework.stereotype.Component;
-
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 @Component
 public class MasterResponseMapper

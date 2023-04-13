@@ -14,10 +14,12 @@ public class ServiceRequestMapper
         implements DtoRequestMapper<ServiceRequestDto, Service> {
     private final OrderRepository orderRepository;
     private final MasterRepository masterRepository;
+
     @Override
     public Service fromDto(ServiceRequestDto dto) {
         Service service = new Service();
         service.setStatus(dto.getStatus());
+        service.setName(dto.getName());
         service.setOrder(orderRepository
                 .findById(dto.getOrderId())
                 .orElse(null));

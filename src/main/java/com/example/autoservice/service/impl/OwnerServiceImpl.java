@@ -3,7 +3,6 @@ package com.example.autoservice.service.impl;
 import com.example.autoservice.model.Owner;
 import com.example.autoservice.repository.OwnerRepository;
 import com.example.autoservice.service.OwnerService;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner get(Long ownerId) {
+    public Owner getById(Long ownerId) {
         return ownerRepository.findById(ownerId).orElseThrow();
     }
 }

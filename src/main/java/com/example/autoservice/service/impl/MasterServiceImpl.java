@@ -2,12 +2,11 @@ package com.example.autoservice.service.impl;
 
 import com.example.autoservice.model.Master;
 import com.example.autoservice.model.Order;
+import com.example.autoservice.model.OrderStatus;
 import com.example.autoservice.repository.MasterRepository;
 import com.example.autoservice.service.MasterService;
 import java.math.BigDecimal;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +27,12 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public BigDecimal getSalary(Master master) {
-        return masterRepository
-                .getReferenceById(master.getId())
-                .getCompletedOrder()
+
+        Long id = master.getId();
+        List<Order> completedOrder = masterRepository
+                .findById(id).get().getCompletedOrder();
+        completedOrder.forEach(order -> order.setStatus(OrderStatus.PAID));
+        return completedOrder
                 .stream()
                 .map(order -> order.getTotalCost())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -38,7 +40,8 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public List<Order> getMastersOrders(Long masterId) {
-        return masterRepository.getReferenceById(masterId).getCompletedOrder();
+        //return masterRepository.findById(masterId).get().getCompletedOrder();
+        return masterRepository.findAllByMasterId(masterId);
     }
 
     @Override

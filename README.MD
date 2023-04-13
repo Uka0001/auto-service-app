@@ -1,11 +1,12 @@
-# Car service app
+# :blue_car:  Car service app :pickup_truck:
 
-## Summary:
+## :notebook_with_decorative_cover: Summary:
 REST-API
 Server app that accepts HTTP requests, stores data in a database
-(DBMS - PostgreSQL) and processes them. Describe a RESTful API with Swagger.
+(DBMS - PostgreSQL) and processes them, perform CRUD operations
+and implement REST API. Implement Swagger and SpringDoc.
 
-## Used technologies:
+## :hammer: Used technologies:
 - Java17
 - Spring Boot 3.0.5
 - PostgreSQL
@@ -13,9 +14,8 @@ Server app that accepts HTTP requests, stores data in a database
 - SpringDoc
 - REST API
 - Checkstyle
-- Logging (Log4j + slf4j) //TODO 
 
-## Functionality:
+## :bookmark_tabs: Functionality:
 • POST - Creation of the "Master" entity
 • PUT - Editing entity data
 • GET - Receiving master's orders
@@ -33,11 +33,17 @@ Server app that accepts HTTP requests, stores data in a database
 • POST - Creation of the entity "Product"
 • PUT - Editing entity data
 
-## Project SetUp:
+## :desktop_computer: Project SetUp:
 1. Clone this repo.
-2. ...
+2. Start your PostgreSQLServer
+3. Create DB from int_db.sql script in resources.
+4. Fill your data(login, password, url, driver) 
+in src/main/resources/application.properties file.
+5. Start app from:
+src/main/java/com/example/autoservice/AutoServiceApplication.java file.
+6. Enjoy the app.
 
-## Entering Swagger UI throw SpringDoc:
-1. Start app.
+## :computer: Entering Swagger UI throw SpringDoc:
+1. Start app as in previous chapter.
 2. Enter http://localhost:8080/swagger-ui/index.html#/ 
-and you`ll see all the needed Swagger UI functional ;)
+and you`ll see all the needed Swagger UI functional and REST endpoints ;)
